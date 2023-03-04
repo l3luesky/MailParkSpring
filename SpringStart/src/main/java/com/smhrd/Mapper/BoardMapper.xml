@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smhrd.Mapper.BoardMapper">
+	<select id="getList" resultType="com.smhrd.entity.Board">
+		select * from board
+	</select>
+	<insert id="boardInsert" parameterType="com.smhrd.entity.Board">
+   		<selectKey order="BEFORE" keyProperty="idx" resultType="int"> 
+			SELECT BOARD_SEQ_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		insert into board values(#{idx},#{title}
+		,#{content},#{writer},sysdate,null)
+	</insert>
+</mapper>
