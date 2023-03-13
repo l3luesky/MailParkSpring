@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smhrd.Mapper.BoardMapper;
 import com.smhrd.entity.Board;
@@ -21,7 +22,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model vo) {
-		return "boardList";
+		return "redirect:/boardList.do";
 	}
 	@RequestMapping(value = "/boardList.do", method = RequestMethod.GET)
 	public String boardList(Model vo) {
@@ -39,6 +40,13 @@ public class BoardController {
 	public String boardInsert(Board vo) {
 		mapper.boardInsert(vo);
 		return "redirect:/boardList.do";
+	}
+	
+	@GetMapping(value = "/boardContent.do")
+	public String boardContent(@RequestParam("idx") int idx, Model model) {
+		Board vo = mapper.boardContent(idx);
+		/* model.ad */
+		return "boardContent";
 	}
 
 }

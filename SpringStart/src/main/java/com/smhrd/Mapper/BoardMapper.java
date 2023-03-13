@@ -10,5 +10,6 @@ import com.smhrd.entity.Board;
 public interface BoardMapper {
 	public List<Board> getList();
 	public void boardInsert(Board vo);
+	public Board boardContent(int idx);
 
 }

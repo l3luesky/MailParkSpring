@@ -4,6 +4,9 @@
 	<select id="getList" resultType="com.smhrd.entity.Board">
 		select * from board
 	</select>
+	<select id="boardContent" parameterType="int" resultType="com.smhrd.entity.Board">
+		select * from board where idx = #{idx}
+	</select>
 	<insert id="boardInsert" parameterType="com.smhrd.entity.Board">
    		<selectKey order="BEFORE" keyProperty="idx" resultType="int"> 
 			SELECT BOARD_SEQ_IDX.NEXTVAL FROM DUAL
