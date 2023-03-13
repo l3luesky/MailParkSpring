@@ -36,6 +36,7 @@ public class BoardController {
 		
 		return "boardForm";
 	}
+	
 	@PostMapping(value = "/boardInsert.do")
 	public String boardInsert(Board vo) {
 		mapper.boardInsert(vo);
@@ -45,8 +46,19 @@ public class BoardController {
 	@GetMapping(value = "/boardContent.do")
 	public String boardContent(@RequestParam("idx") int idx, Model model) {
 		Board vo = mapper.boardContent(idx);
-		/* model.ad */
+		model.addAttribute("vo", vo);
 		return "boardContent";
+	}
+	
+	@GetMapping(value = "/boardDelete.do")
+	public String boardDelete(@RequestParam("idx") int idx) {
+		mapper.boardDelete(idx);
+		return "redirect:/boardList.do";
+	}
+	@PostMapping(value = "/boardUpdate.do")
+	public String boardUpdate(Model model, Board vo) {
+		mapper.boardUpdate(vo);
+		return "redirect:/boardList.do";
 	}
 
 }
